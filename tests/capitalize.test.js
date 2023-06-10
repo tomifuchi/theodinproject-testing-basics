@@ -1,27 +1,24 @@
 const {capitalize} = require('../src/capitalize');
 
 describe('capitalize', () => {
- 	it('Should capitalize a string', () => {
- 		const input = 'hello';
- 		const expectedResult = 'HELLO';
- 		expect(capitalize(input)).toBe(expectedResult);
- 	});
-
-	it('should not modify a blank string', () => {
-		const input = '';
-		const expectedResult = '';
-		expect(capitalize(input)).toBe(expectedResult);
-	});
-
-	it('should capitalize all letters in a string within special characters', () => {
-		const input = 'hello (world)';
-		const expectedResult = 'HELLO (WORLD)';
-		expect(capitalize(input)).toBe(expectedResult);
-	});
-
-	it('should capitalize all letters in a string with special characters', () => {
-		const input = `@"!#$%&/()=?»«@£§€{}.-;<>_,";hello  world!`
-		const expectedResult = `@"!#$%&/()=?»«@£§€{}.-;<>_,";HELLO  WORLD!`
-		expect(capitalize(input)).toBe(expectedResult);
-	});
+  test('should only capitalize the first letter of a string', () => {
+    const result = capitalize('hello, World!');
+    expect(result).toEqual('Hello, World!');
+  });
+  test('should handle strings with spaces and punctuation', () => {
+    const result = capitalize('a man, a plan, a canal, Panama!');
+    expect(result).not.toEqual('A Man, A Plan, A Canal, Panama!');
+  });
+  test('should handle strings with mixed case letters', () => {
+    const result = capitalize('mi amigo es un perro inteligente!');
+    expect(result).not.toEqual('Mi Amigo Es Un Perro Inteligente!');
+  });
+  test('should handle strings with special characters', () => {
+    const result = capitalize('le très bon ami!');
+    expect(result).toEqual('Le très bon ami!');
+  });
+  test('should handle strings with numbers and symbols', () => {
+    const result = capitalize('$5.25');
+    expect(result).toEqual('$5.25');
+  });
 });

@@ -3,7 +3,6 @@ const {caesarCipher} = require('../src/caesarCipher');
 describe('Caesar Cipher', () => {
 	const error_msg = 'Not of type string';
 
-
 	it('should apply a simple shift of 1', () => {
 		const plaintext = 'hello world';
 		const ciphertext = caesarCipher(plaintext, 1);
@@ -44,7 +43,7 @@ describe('Caesar Cipher', () => {
 		expect(() => caesarCipher(undefined, 1)).toThrow(error_msg);
 	});
 
-	it('should apply no  shift to an empty string', () => {
+	it('should apply no shift to an empty string', () => {
 		const plaintext = '';
 		const ciphertext = caesarCipher(plaintext, 0);
 		expect(ciphertext).toEqual('');
